@@ -36,24 +36,15 @@ require_once "../includes/header.php";
 
 
     <!-- NAVBAR -->
-    <header class="site-navbar mt-3">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="site-logo col-6"><a href="index.html">JobBoard</a></div>
 
-                <nav class="mx-auto site-navigation">
-                    <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                        <li><a href="<?php echo APPURL; ?>" class="nav-link active">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-
-
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-        </div>
-    </header>
 
     <?php
+
+    if(isset($_SESSION['username']))
+    {
+        $app_url = APPURL;
+        echo "<script>window.location='$app_url'</script>";
+    }
     if(isset($_POST['submit'])){
         if(empty($_POST['username']) OR empty($_POST['email'] OR empty($_POST['re-password']))){
             echo "<script>alert('some inputs are empty')</script>";

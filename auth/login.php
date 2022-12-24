@@ -5,7 +5,11 @@ require_once "../config/config.php";
 require_once "../includes/header.php";
 ?>
 <?php
-if(isset($_POST['submit'])){
+if(isset($_SESSION['username']))
+{
+    header("Location: ".APPURL) ;
+}
+    if(isset($_POST['submit'])){
     if(empty($_POST['email']) OR empty($_POST['password'])){
         echo "<script>alert('some inputs are empty')</script>";
     }else {
@@ -24,7 +28,10 @@ if(isset($_POST['submit'])){
         $select = $login->fetch(PDO::FETCH_ASSOC);
         if($login->rowCount() > 0){
             if(password_verify($password, $select['mypassword'])){
-                echo "LOGGED IN";
+                $_SESSION['username'] = $select['username'];
+                $_SESSION['id'] = $select['id'];
+                $_SESSION['type'] = $select['type'];
+                header("Location: ".APPURL);
             }else{
                 echo "<script>alert('user is invalid')</script>";
             }

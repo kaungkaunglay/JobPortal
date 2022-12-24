@@ -15,6 +15,6 @@ try{
 //}else{
 //    echo "error";
 //}
-define("APPURL", "http://localhost/Job%20portal");
+
 
 ?>
