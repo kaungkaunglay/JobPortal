@@ -18,7 +18,9 @@
             <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
                 <div class="ml-auto">
                     <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
-                    <a href="login.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+                    <a href="<?php echo APPURL?>/auth/register.php" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Register</a>
+                    <a href="<?php echo APPURL?>/auth/login.php" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Login</a>
+<!--                    <a href="--><?php //echo APPURL ?><!--/auth/register.php" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Register</a>-->
                 </div>
                 <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
             </div>
@@ -26,3 +28,16 @@
         </div>
     </div>
 </header>
+<link rel="shortcut icon" href="ftco-32x32.png">
+
+<link rel="stylesheet" href="../css/custom-bs.css">
+<link rel="stylesheet" href="../css/jquery.fancybox.min.css">
+<link rel="stylesheet" href="../css/bootstrap-select.min.css">
+<link rel="stylesheet" href="../fonts/icomoon/style.css">
+<link rel="stylesheet" href="../fonts/line-icons/style.css">
+<link rel="stylesheet" href="../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../css/animate.min.css">
+<link rel="stylesheet" href="../css/quill.snow.css">
+
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="../css/style.css">
