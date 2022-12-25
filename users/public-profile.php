@@ -19,7 +19,7 @@ if(isset($_GET['id'])){
                     <h1 class="text-white font-weight-bold">Log In</h1>
                     <div class="custom-breadcrumbs">
                         <a href="<?php echo APPURL ?>">Home</a> <span class="mx-2 slash">/</span>
-                        <span class="text-white"><strong>Log In</strong></span>
+                        <span class="text-white"><strong><?php echo $profile[0]->username; ?></strong></span>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@ if(isset($_GET['id'])){
                 <div class="card p-3 py-4">
 
                     <div class="text-center">
-                        <img src="../user-images/<?php echo $profile[0]->img;  ?>" width="100" class="rounded-circle">
+                        <img src="user-images/<?php echo $profile[0]->img;  ?>" width="100" class="rounded-circle">
                     </div>
 
                     <div class="text-center mt-3">
