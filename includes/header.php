@@ -5,15 +5,15 @@ define("APPURL", "http://localhost/Job%20portal");
 <header class="site-navbar mt-3">
     <div class="container-fluid">
         <div class="row align-items-center">
-            <div class="site-logo col-6"><a href="index.html">JobBoard</a></div>
+            <div class="site-logo col-6"><a href="<?php echo APPURL; ?>">JobBoard</a></div>
 
             <nav class="mx-auto site-navigation">
-                <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                    <li><a href="index.html" class="nav-link active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                <ul style="margin-right: -500px;" class="site-menu js-clone-nav d-inline d-xl-block ml-0 pl-0">
+                    <li><a href="<?php echo APPURL; ?>" class="nav-link active">Home</a></li>
+                    <li><a href="<?php echo APPURL; ?>/about.php">About</a></li>
 
 
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="<?php echo APPURL; ?>/contact.php">Contact</a></li>
                     <?php
                     if(isset($_SESSION['username'])):
                     ?>
@@ -22,8 +22,8 @@ define("APPURL", "http://localhost/Job%20portal");
                                 <?php echo $_SESSION['username'] ?>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="<?php echo APPURL;?>/users/public-profile.php?id=<?php echo $_SESSION['id'];?>">Public Profile</a>
+                                <a class="dropdown-item" href="#">Update Profile</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo APPURL; ?>/auth/logout.php">Logout</a>
                             </div>

@@ -57,15 +57,28 @@ require_once "../includes/header.php";
             $type = $_POST['type'];
             // checking for password match
             if($password == $re_password){
-                $insert = $conn->prepare("INSERT INTO users (username, email, mypassword, img, type) VALUES(:username, :email, :mypassword, :img, :type)");
-                $insert->execute([
-                    ':username' => $username,
-                    ':email' => $email,
-                    ':mypassword'  => password_hash($password, PASSWORD_DEFAULT),
-                    ':img' => $img,
-                    ':type' => $type
-                ]);
-                echo "<script>window.location='login.php'</script>";
+                if(strlen($email) > 22 OR strlen($username) > 15){
+                    echo "<script>alert('email or username is too big')</script>";
+                }else{
+
+                    //Checking for username or password availability
+                    $validate  = $conn->query("SELECT * FROM users WHERE email = '$email' OR username = '$username'");
+                    $validate->execute();
+                    if($validate->rowCount() > 0){
+                        echo "<script>alert('Account is already taken')</script>";
+                    }else{
+                        $insert = $conn->prepare("INSERT INTO users (username, email, mypassword, img, type) VALUES(:username, :email, :mypassword, :img, :type)");
+                        $insert->execute([
+                            ':username' => $username,
+                            ':email' => $email,
+                            ':mypassword'  => password_hash($password, PASSWORD_DEFAULT),
+                            ':img' => $img,
+                            ':type' => $type
+                        ]);
+                        echo "<script>window.location='login.php'</script>";
+                    }
+                }
+
             }else{
                 echo "<script>alert('password don\' match')</script>";
             }
@@ -102,14 +115,14 @@ require_once "../includes/header.php";
                         <div class="row form-group">
                             <div class="col-md-12 mb-3 mb-md-0">
                                 <label class="text-black" for="fname">Email</label>
-                                <input name="email" type="text" id="fname" class="form-control" placeholder="Email address">
+                                <input name="email" type="email" id="fname" class="form-control" placeholder="Email address">
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                            <select name="type" class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select User Type">
+                        <div class="form-group">
+                            <label for="job-type">User Type</label>
+                            <select name="type" class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select User Type">
                                 <option>Worker</option>
                                 <option>Company</option>
-
                             </select>
                         </div>
                         <div class="row form-group">
@@ -118,6 +131,7 @@ require_once "../includes/header.php";
                                 <input name="password" type="password" id="fname" class="form-control" placeholder="Password">
                             </div>
                         </div>
+
                         <div class="row form-group mb-4">
                             <div class="col-md-12 mb-3 mb-md-0">
                                 <label class="text-black" for="fname">Re-Type Password</label>
