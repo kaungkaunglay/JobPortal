@@ -8,7 +8,6 @@ if(!isset($_SESSION['username'])){
     header("location: ".APPURL);
 }
 
-
 if(isset($_GET['upd_id'])){
     $id = $_GET['upd_id'];
     if($_SESSION['id'] !== $id){
@@ -38,9 +37,20 @@ if(isset($_GET['upd_id'])){
 
             $update = $conn->prepare("UPDATE users SET username =  :username, email = :email, title = :title, bio = :bio, facebook = :facebook, twitter = :twitter, linkedin = :linkedin, img = :img, cv = :cv WHERE id = '$id'");
             if($image !== "" OR $cv !== ""){
+                    if(!is_null($image)){
+                        $old_img_link = "user-images/".$row[0]->img;
+                        if(file_exists($old_img_link)){
+                            unlink($old_img_link);
+                        }
+                    }
+                    if(!is_null($cv)){
+                        $old_cv_link = "user-cvs/".$row[0]->cv;
+                        if(file_exists($old_cv_link)){
+                            unlink($old_cv_link);
+                        }
+                    }
 
-                        unlink("user-images/".$row[0]->img);
-                        unlink("user-cvs/".$row[0]->cv);
+
 
                 $update->execute([
                     ':username' => trim($username),

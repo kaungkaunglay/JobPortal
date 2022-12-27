@@ -31,7 +31,10 @@ if(isset($_SESSION['username']))
                 $_SESSION['username'] = $select['username'];
                 $_SESSION['id'] = $select['id'];
                 $_SESSION['type'] = $select['type'];
-                header("Location: ".APPURL);
+
+                $_SESSION['email'] = $select['email'];
+                $_SESSION['image'] = $select['img'];
+                    header("Location: ".APPURL);
             }else{
                 echo "<script>alert('user is invalid')</script>";
             }
