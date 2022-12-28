@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2022 at 03:31 PM
+-- Generation Time: Dec 28, 2022 at 03:32 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `jobboard`
 --
+CREATE DATABASE IF NOT EXISTS `jobboard` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `jobboard`;
 
 -- --------------------------------------------------------
 
