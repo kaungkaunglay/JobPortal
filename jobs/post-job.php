@@ -6,11 +6,17 @@ require_once "../includes/header.php";
 if(isset($_SESSION['type']) AND $_SESSION['type'] !== "Company"){
     header("Location: ".APPURL);
 }
+$get_categories = $conn->query("SELECT * FROM categories");
+$get_categories->execute();
+$get_category = $get_categories->fetchAll(PDO::FETCH_OBJ);
+
+
 if(isset($_POST['submit'])){
     $job_title = $_POST['job_title'];
     $job_region = $_POST['job_region'];
     $job_type = $_POST['job_type'];
     $vacancy = $_POST['vacancy'];
+    $job_category = $_POST['job_category'];
     $experience = $_POST['experience'];
     $salary = $_POST['salary'];
     $gender = $_POST['gender'];
@@ -25,9 +31,9 @@ if(isset($_POST['submit'])){
     $company_image = $_POST['company_image'];
 
 
-    $insert = $conn->prepare("INSERT INTO jobs (job_title, job_region, job_type, vacancy, experience, salary, gender, application_deadline,
+    $insert = $conn->prepare("INSERT INTO jobs (job_title, job_region, job_type, vacancy, job_category , experience, salary, gender, application_deadline,
          job_description, responsibilities, education_experience, other_benifits, company_email, company_name, company_id, company_image) VALUES(
-          :job_title, :job_region, :job_type, :vacancy, :experience, :salary, :gender, :application_deadline,
+          :job_title, :job_region, :job_type, :vacancy, :job_category , :experience, :salary, :gender, :application_deadline,
           :job_description, :responsibilities, :education_experience, :other_benifits,  :company_email, :company_name, :company_id, :company_image
          )");
 
@@ -37,6 +43,7 @@ if(isset($_POST['submit'])){
         ':job_region' => $job_region,
         ':job_type' => $job_type,
         ':vacancy' => $vacancy,
+        ':job_category'  => $job_category ,
         ':experience' => $experience,
         ':salary' => $salary,
         ':gender' => $gender,
@@ -123,6 +130,17 @@ if(isset($_POST['submit'])){
                 <label for="job-location">Vacancy</label>
                 <input required name="vacancy" type="text" class="form-control" id="job-location" placeholder="e.g. 3">
               </div>
+                <div class="form-group">
+                    <label for="job-type">Job Category</label>
+                    <select required name="job_category" class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Category">
+                        <?php
+                        foreach($get_category as $category):
+                        ?>
+                            <option><?php echo $category->name;  ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
               <div class="form-group">
                 <label for="job-type">Experience</label>
                 <select required name="experience" class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Years of Experience">
