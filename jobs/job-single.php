@@ -7,9 +7,13 @@
         $select->execute();
         $row = $select->fetch(PDO::FETCH_OBJ);
         $job_category = $row->job_category;
-        $related_jobs = $conn->query("SELECT * FROM jobs WHERE job_category = '$job_category' AND status = 1");
+        $related_jobs = $conn->query("SELECT * FROM jobs WHERE job_category = '$job_category' AND status = 1 AND id !='$id'");
         $related_jobs->execute();
         $related_jobs =  $related_jobs->fetchAll(PDO::FETCH_OBJ);
+
+        $job_count = $conn->query("SELECT COUNT(*) as job_count FROM jobs WHERE job_category = '$job_category' AND status = 1 AND id !='$id'");
+        $job_count->execute();
+        $job_num =  $job_count->fetchAll(PDO::FETCH_OBJ);
     }
 ?>
     <!-- HOME -->
@@ -105,7 +109,7 @@
             <div class="bg-light p-3 border rounded">
               <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
               <div class="px-3">
-                <a href="<?php echo "https://www.facebook.com/sharer/sharer.php?u=".APPURL."/jobs/job-single.php?id=".$row->id."&quote=".$row->job_title;?> class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
+                <a href="<?php echo "https://www.facebook.com/sharer/sharer.php?u=".APPURL."/jobs/job-single.php?id=".$row->id."&quote=".$row->job_title;?>"  class="pt-3 pb-3 pr-3 pl-0"> <span class="icon-facebook"></span></a>
                 <a href="https://twitter.com/intent/tweet?url=<?php echo APPURL ?>/jobs/job-single.php?id=<?php echo $row->id; ?>&text=<?php echo $row->job_title; ?>" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
                 <a href="https://linkedin.com/sharing/share-offsite/?url=<?php echo APPURL ?>/jobs/job-single.php?id=<?php echo $row->id; ?>" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
               </div>
@@ -121,7 +125,7 @@
 
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">
-            <h2 class="section-title mb-2">22,392 Related Jobs</h2>
+            <h2 class="section-title mb-2"><?php echo $job_num[0]->job_count; ?> Related Jobs</h2>
           </div>
         </div>
         
