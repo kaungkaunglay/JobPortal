@@ -1,6 +1,6 @@
 <?php
 session_start();
-define("APPURL", "http://localhost/Job%20portal");
+define("APPURL", "http://localhost/Job Portal");
 ?>
 <header class="site-navbar mt-3">
     <div class="container-fluid">

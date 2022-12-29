@@ -56,7 +56,7 @@
           <div class="col-lg-8">
             <div class="mb-5">
               <figure class="mb-5"><img src="../images/job_single_img_1.jpg" alt="Image" class="img-fluid rounded"></figure>
-              <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span><?php echo $row->job_description ?></h3>
+                <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-rocket mr-3"></span>Description</h3>
                 <p><?php echo $row->job_description; ?></p>
             </div>
             <div class="mb-5">
@@ -89,7 +89,22 @@
                 <button class="btn btn-block btn-primary btn-md">Apply Now</button>
               </div>
             </div>
-
+            <?php
+            if(isset($_SESSION['username'])):
+            if(isset($_SESSION['type']) AND $_SESSION['type'] == "Company"):
+            if(isset($_SESSION['id']) AND $_SESSION['id'] == $row->company_id):
+            ?>
+              <div class="row mb-5">
+                  <div class="col-6">
+                      <a href="<?php echo APPURL ?>/jobs/job-update.php?id=<?php echo $row->id; ?>" class="btn btn-block btn-light btn-md">Update</a>
+                      <!--add text-danger to it to make it read-->
+                  </div>
+                  <div class="col-6">
+                      <a style="margin-left: 300px;" href="<?php echo APPURL ?>/jobs/job-delete.php?id=<?php echo $row->id; ?>" class="btn btn-block btn-danger btn-md">Delete</a>
+              </div>
+                  <?php endif; ?>
+              <?php endif; ?>
+                  <?php endif; ?>
           </div>
           <div class="col-lg-4">
             <div class="bg-light p-3 border rounded mb-4">
@@ -148,7 +163,7 @@
                 <span class="icon-room"></span> <?php echo $job->job_region; ?>
               </div>
               <div class="job-listing-meta">
-                <span class="badge badge-success"><?php echo $job->job_type; ?></span>
+                <span class="badge badge-<?php if($job->job_type == 'Part Time'){ echo 'danger'; } else {echo 'success'; } ?>"><?php echo $job->job_type; ?></span>
               </div>
             </div>
           </li>
