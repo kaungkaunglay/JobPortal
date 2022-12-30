@@ -61,29 +61,23 @@ if(isset($_GET['id'])){
                             <a href="<?php echo $profile[0]->twitter; ?>" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
                             <a href="<?php echo $profile[0]->linkedin; ?>" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
                         </div>
-
-
-
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>
-
-
     </div>
 </section>
     <section class="site-section">
         <div class="container">
-
+            <?php
+        if(isset($_SESSION['type']) AND $_SESSION['type'] == "Company"):
+            ?>
             <div class="row mb-5 justify-content-center">
                 <div class="col-md-7 text-center">
                     <h2 class="section-title mb-2">Jobs Posted By this Company</h2>
                 </div>
             </div>
+            <?php endif; ?>
 
             <ul class="job-listings mb-5">
                 <?php

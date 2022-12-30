@@ -15,6 +15,9 @@ if(isset($_GET['id'])){
     $select = $conn->query("SELECT * FROM jobs WHERE id = '$id'");
     $select->execute();
     $single_job = $select->fetch(PDO::FETCH_OBJ);
+    if(isset($_SESSION['id']) AND $single_job->company_id !== $_SESSION['id']){
+        header("Location: ".APPURL);
+    }
 }
 
 if(isset($_POST['submit'])){
@@ -37,13 +40,12 @@ if(isset($_POST['submit'])){
     $company_image = $_POST['company_image'];
 
 
-    $insert = $conn->prepare("INSERT INTO jobs (job_title, job_region, job_type, vacancy, job_category , experience, salary, gender, application_deadline,
-         job_description, responsibilities, education_experience, other_benifits, company_email, company_name, company_id, company_image) VALUES(
-          :job_title, :job_region, :job_type, :vacancy, :job_category , :experience, :salary, :gender, :application_deadline,
-          :job_description, :responsibilities, :education_experience, :other_benifits,  :company_email, :company_name, :company_id, :company_image
-         )");
+    $update = $conn->prepare("UPDATE jobs SET job_title = :job_title, job_region = :job_region, job_type = :job_type, vacancy = :vacancy,
+         job_category = :job_category, experience = :experience, salary = :salary, gender = :gender, application_deadline = :application_deadline,
+         job_description = :job_description, responsibilities = :responsibilities, education_experience = :education_experience, other_benifits = :other_benifits,
+          company_email = :company_email, company_name = :company_name, company_id = :company_id, company_image = :company_image WHERE id='$id'");
 
-    $insert->execute([
+    $update->execute([
 
         ':job_title' => $job_title,
         ':job_region' => $job_region,
@@ -63,7 +65,7 @@ if(isset($_POST['submit'])){
         ':company_id' => $company_id,
         ':company_image' => $company_image
     ]);
-    header("Location: ".APPURL.'/jobs/post-job.php');
+    header("Location: ".APPURL.'/jobs/job-update.php?id='.$id);
 }
 
 ?>
@@ -100,7 +102,7 @@ if(isset($_POST['submit'])){
         </div>
         <div class="row mb-5">
             <div class="col-lg-12">
-                <form class="p-4 p-md-5 border rounded" action="post-job.php" method="post">
+                <form class="p-4 p-md-5 border rounded" action="job-update.php?id=<?php echo $id;?>" method="post">
 
                     <!--job details-->
 
@@ -230,7 +232,7 @@ if(isset($_POST['submit'])){
                     <div class="col-lg-4 ml-auto">
                         <div class="row">
                             <div class="col-6">
-                                <input required type="submit" name="submit" class="btn btn-block btn-primary btn-md" style="margin-left: 200px;" value="Save Job">
+                                <input required type="submit" name="submit" class="btn btn-block btn-primary btn-md" style="margin-left: 200px;" value="Update Job">
                             </div>
                         </div>
                     </div>

@@ -3,17 +3,62 @@
 <?php
     if(isset($_GET['id'])){
         $id = $_GET['id'];
+        // getting single jobs info
         $select = $conn->query("SELECT * FROM jobs WHERE id = '$id'");
         $select->execute();
         $row = $select->fetch(PDO::FETCH_OBJ);
         $job_category = $row->job_category;
+        //getting related jobs;
         $related_jobs = $conn->query("SELECT * FROM jobs WHERE job_category = '$job_category' AND status = 1 AND id !='$id'");
         $related_jobs->execute();
         $related_jobs =  $related_jobs->fetchAll(PDO::FETCH_OBJ);
-
+        //getting the count of related jobs;
         $job_count = $conn->query("SELECT COUNT(*) as job_count FROM jobs WHERE job_category = '$job_category' AND status = 1 AND id !='$id'");
         $job_count->execute();
         $job_num =  $job_count->fetchAll(PDO::FETCH_OBJ);
+    //submit application
+        if(isset($_POST['submit_application'])){
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $cv = $_POST['cv'];
+            $worker_id = $_POST['worker_id'];
+            $job_id = $_POST['job_id'];
+            $job_title = $_POST['job_title'];
+            $company_id = $_POST['company_id'];
+
+            $insert = $conn->prepare("INSERT INTO job_applications (username, email, cv, worker_id, job_id, job_title, company_id) VALUES (:username, :email, :cv, :worker_id, :job_id, :job_title, :company_id)");
+            $insert->execute([
+                    ':username' => $username,
+                    ':email' => $email,
+                    ':cv' => $cv,
+                    ':worker_id' => $worker_id,
+                    ':job_id' => $job_id,
+                    ':job_title' => $job_title,
+                    ':company_id' => $company_id
+            ]);
+            echo "<script>alert('Application sent successfully')</script>";
+            header("Location: ".APPURL."/jobs/job-single.php?id=".$id);
+        }
+        //saving jobs
+//        if(isset($_POST['submit_save'])){
+//            $job_id = $_POST['job_id'];
+//            $worker_id = $_POST['worker_id'];
+//            $save_jobs = $conn->prepare("INSERT INTO saved_jobs (job_id, worker_id) VALUES (:job_id , :worker_id)");
+//            $save_jobs->execute([
+//                    ':job_id' => $job_id,
+//                    ':worker_id' => $worker_id
+//            ]);
+//            echo "<script>alert('Jobs saved successfully')</script>";
+//        }
+        //Checking for saved jobs
+
+        $checking_for_saved_jobs = $conn->query("SELECT * FROM saved_jobs WHERE worker_id= '$_SESSION[id]' AND job_id='$id'");
+        $checking_for_saved_jobs->execute();
+
+
+        // Checking for worker application
+        $checking_for_application = $conn->query("SELECT * FROM job_applications WHERE worker_id = $_SESSION[id] AND job_id= '$id'");
+        $checking_for_application->execute();
     }
 ?>
     <!-- HOME -->
@@ -79,21 +124,72 @@
                 <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span><?php echo $row->other_benifits;?></span></li>
               </ul>
             </div>
-
+            <?php
+            if(isset($_SESSION['username'])):
+            if(isset($_SESSION['type']) AND $_SESSION['type'] == "Worker"):
+            ?>
             <div class="row mb-5">
-              <div class="col-6">
-                <button class="btn btn-block btn-light btn-md"><i class="icon-heart"></i>Save Job</button>
-                <!--add text-danger to it to make it read-->
-              </div>
-              <div class="col-6">
-                <button class="btn btn-block btn-primary btn-md">Apply Now</button>
-              </div>
+                <form action="job-single.php?id=<?php  echo $id?>" method="post">
+                   <?php
+                   if(   $checking_for_saved_jobs->rowCount() ==0):
+                   ?>
+                    <div style="" class="col-6">
+                        <a style="width: 300px; height: 50px;" href="job-save.php?job_id=<?php echo $id; ?>&worker_id=<?php echo $_SESSION['id']; ?>&status=save" class="btn btn-block btn-light btn-md"><i class="icon-heart"></i> Save Job</a>
+                    </div>
+                   <?php else: ?>
+                       <div style="" class="col-6">
+                           <a style="width: 300px; height: 50px;" href="job-save.php?job_id=<?php echo $id; ?>&worker_id=<?php echo $_SESSION['id']; ?>&status=delete" class="btn btn-block btn-light btn-md">Delete Job</a>
+                       </div>
+                   <?php endif; ?>
+                </form>
+                <?php
+                if($checking_for_application->rowCount() == 0):
+                    ?>
+                <form action="job-single.php?id=<?php echo $id; ?>" method="post">
+                    <!--job details-->
+
+                    <div class="form-group">
+                        <input  value="<?php echo $_SESSION['username']; ?>" required type="hidden" name="username" class="form-control" id="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input value="<?php echo $_SESSION['email']; ?>" required type="hidden" name="email" class="form-control" id="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input value="<?php echo $_SESSION['cv'];  ?>" required type="hidden" name="cv" class="form-control" id="username" placeholder="cv">
+                    </div>
+                    <div class="form-group">
+                        <input value="<?php echo $_SESSION['id'] ?>" required type="hidden" name="worker_id" class="form-control" id="username" placeholder="worker_id">
+                    </div>
+                    <div class="form-group">
+                        <input value="<?php echo $id; ?>" required type="hidden" name="job_id" class="form-control" id="username" placeholder="job_id">
+                    </div>
+                    <div class="form-group">
+                        <input value="<?php echo $row->job_title; ?>" required type="hidden" name="job_title" class="form-control" id="username" placeholder="job_title">
+                    </div>
+                    <div class="form-group">
+                        <input value="<?php echo $row->company_id; ?>" required type="hidden" name="company_id" class="form-control" id="username" placeholder="company_id">
+                    </div>
+                    <div style="" class="col-6">
+                        <button style="padding: 13px 120px; margin-top: -17px;" type="submit" name="submit_application" class="btn btn-inline btn-primary btn-md">Apply</button>
+                    </div>
+                </form>
+                <?php else:  ?>
+                    <div class="col-6">
+                        <h4 class="d-inline">You've applied for this job.</h4>
+                    </div>
+                <?php endif;?>
             </div>
+
+            <?php endif; ?>
+              <?php else: ?>
+              <h2>Login so you can apply for job</h2>
+              <?php endif; ?>
             <?php
             if(isset($_SESSION['username'])):
             if(isset($_SESSION['type']) AND $_SESSION['type'] == "Company"):
             if(isset($_SESSION['id']) AND $_SESSION['id'] == $row->company_id):
             ?>
+
               <div class="row mb-5">
                   <div class="col-6">
                       <a href="<?php echo APPURL ?>/jobs/job-update.php?id=<?php echo $row->id; ?>" class="btn btn-block btn-light btn-md">Update</a>
@@ -101,11 +197,13 @@
                   </div>
                   <div class="col-6">
                       <a style="margin-left: 300px;" href="<?php echo APPURL ?>/jobs/job-delete.php?id=<?php echo $row->id; ?>" class="btn btn-block btn-danger btn-md">Delete</a>
+                    </div>
               </div>
-                  <?php endif; ?>
-              <?php endif; ?>
-                  <?php endif; ?>
+            <?php endif; ?>
+            <?php endif; ?>
+            <?php endif; ?>
           </div>
+
           <div class="col-lg-4">
             <div class="bg-light p-3 border rounded mb-4">
               <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
@@ -119,6 +217,7 @@
                 <li class="mb-2"><strong class="text-black">Gender:</strong> <?php echo $row->gender; ?></li>
                 <li class="mb-2"><strong class="text-black">Application Deadline:</strong><?php echo date('M',strtotime($row->application_deadline)).','.date('d',strtotime($row->application_deadline)).' '.date('Y',strtotime($row->application_deadline)); ?></li>
               </ul>
+
             </div>
 
             <div class="bg-light p-3 border rounded">
