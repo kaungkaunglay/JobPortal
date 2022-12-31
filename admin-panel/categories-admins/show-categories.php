@@ -1,73 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Admin Panel</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-     <link href="../styles/style.css" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div id="wrapper">
-    <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
-      <div class="container">
-      <a class="navbar-brand" href="#">LOGO</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<<?php require "../layouts/header.php" ; ?>
+<?php require "../../config/config.php"; ?>
 
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav side-nav" >
-          <li class="nav-item">
-            <a class="nav-link" style="margin-left: 20px;" href="../index.html">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../admins/admins.html" style="margin-left: 20px;">Admins</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../categories-admins/show-categories.html" style="margin-left: 20px;">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../jobs-admins/show-jobs.html" style="margin-left: 20px;">Jobs</a>
-          </li>
-         <!--  <li class="nav-item">
-            <a class="nav-link" href="#" style="margin-left: 20px;">Comments</a>
-          </li> -->
-        </ul>
-        <ul class="navbar-nav ml-md-auto d-md-flex">
-          <li class="nav-item">
-            <a class="nav-link" href="../index.html">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              username
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Logout</a>
-              
-          </li>
-                          
-          
-        </ul>
-      </div>
-    </div>
-    </nav>
-    <div class="container-fluid">
-
+<?php
+    $select = $conn->query("SELECT * FROM categories");
+    $select->execute();
+    $categories = $select->fetchAll(PDO::FETCH_OBJ) ;
+?>
           <div class="row">
         <div class="col">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title mb-4 d-inline">Categories</h5>
-             <a  href="create-category.html" class="btn btn-primary mb-4 text-center float-right">Create Categories</a>
+             <a  href="<?php echo ADMINURL ?>/categories-admins/create-category.php" class="btn btn-primary mb-4 text-center float-right">Create Categories</a>
               <table class="table">
                 <thead>
                   <tr>
@@ -78,24 +22,16 @@
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                foreach($categories as $category):
+                ?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td><a  href="#" class="btn btn-warning text-white text-center ">Update </a></td>
-                    <td><a href="#" class="btn btn-danger  text-center ">Delete </a></td>
+                    <th scope="row"><?php echo $category->id; ?></th>
+                    <td><?php echo $category->name; ?></td>
+                    <td><a  href="<?php echo ADMINURL ?>/categories-admins/update-category.php?id=<?php echo $category->id; ?>" class="btn btn-warning text-white text-center ">Update </a></td>
+                    <td><a href="<?php echo ADMINURL ?>/categories-admins/delete-category.php?id=<?php echo $category->id; ?>" class="btn btn-danger  text-center ">Delete </a></td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td><a  href="#" class="btn btn-warning text-white text-center">Update </a></td>
-                    <td><a href="#" class="btn btn-danger  text-center ">Delete </a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                     <td><a  href="#" class="btn btn-warning text-white text-center ">Update </a></td>
-                    <td><a href="#" class="btn btn-danger text-center">Delete </a></td>
-                  </tr>
+                <?php endforeach;?>
                 </tbody>
               </table> 
             </div>
@@ -103,11 +39,4 @@
         </div>
       </div>
 
-
-
-  </div>
-<script type="text/javascript">
-
-</script>
-</body>
-</html>
+<<?php require "../layouts/footer.php" ; ?>
