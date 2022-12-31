@@ -50,15 +50,24 @@
 //            ]);
 //            echo "<script>alert('Jobs saved successfully')</script>";
 //        }
-        //Checking for saved jobs
 
-        $checking_for_saved_jobs = $conn->query("SELECT * FROM saved_jobs WHERE worker_id= '$_SESSION[id]' AND job_id='$id'");
-        $checking_for_saved_jobs->execute();
+        if(isset($_SESSION['id'])){
+            //Checking for saved jobs
+            $checking_for_saved_jobs = $conn->query("SELECT * FROM saved_jobs WHERE worker_id= '$_SESSION[id]' AND job_id='$id'");
+            $checking_for_saved_jobs->execute();
+
+            // Checking for worker application
+            $checking_for_application = $conn->query("SELECT * FROM job_applications WHERE worker_id = $_SESSION[id] AND job_id= '$id'");
+            $checking_for_application->execute();
+        }
 
 
-        // Checking for worker application
-        $checking_for_application = $conn->query("SELECT * FROM job_applications WHERE worker_id = $_SESSION[id] AND job_id= '$id'");
-        $checking_for_application->execute();
+
+
+        //getting categories
+        $categories = $conn->query("SELECT * FROM categories");
+        $categories->execute();
+        $all_categories = $categories->fetchAll(PDO::FETCH_OBJ) ;
     }
 ?>
     <!-- HOME -->
@@ -138,7 +147,7 @@
                     </div>
                    <?php else: ?>
                        <div style="" class="col-6">
-                           <a style="width: 300px; height: 50px;" href="job-save.php?job_id=<?php echo $id; ?>&worker_id=<?php echo $_SESSION['id']; ?>&status=delete" class="btn btn-block btn-light btn-md">Delete Job</a>
+                           <a style="width: 300px; height: 50px;" href="job-save.php?job_id=<?php echo $id; ?>&worker_id=<?php echo $_SESSION['id']; ?>&status=delete" class="btn btn-block btn-light btn-md">Delete Saved Job</a>
                        </div>
                    <?php endif; ?>
                 </form>
@@ -208,14 +217,15 @@
             <div class="bg-light p-3 border rounded mb-4">
               <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
               <ul class="list-unstyled pl-3 mb-0">
-                <li class="mb-2"><strong class="text-black">Published on:</strong><?php echo date('M',strtotime($row->created_at)).','.date('d',strtotime($row->created_at)).' '.date('Y',strtotime($row->created_at)); ?></li>
-                <li class="mb-2"><strong class="text-black">Vacancy:</strong> <?php echo $row->vacancy; ?></li>
-                <li class="mb-2"><strong class="text-black">Employment Status:</strong> <?php echo $row->job_type; ?></li>
-                <li class="mb-2"><strong class="text-black">Experience:</strong> <?php echo $row->experience; ?></li>
-                <li class="mb-2"><strong class="text-black">Job Location:</strong><?php echo $row->job_region; ?></li>
-                <li class="mb-2"><strong class="text-black">Salary:</strong> <?php echo $row->salary; ?></li>
-                <li class="mb-2"><strong class="text-black">Gender:</strong> <?php echo $row->gender; ?></li>
+                <li class="mb-2"><strong class="text-black">Published on: </strong><?php echo date('M',strtotime($row->created_at)).','.date('d',strtotime($row->created_at)).' '.date('Y',strtotime($row->created_at)); ?></li>
+                <li class="mb-2"><strong class="text-black">Vacancy: </strong> <?php echo $row->vacancy; ?></li>
+                <li class="mb-2"><strong class="text-black">Employment Status: </strong> <?php echo $row->job_type; ?></li>
+                <li class="mb-2"><strong class="text-black">Experience: </strong> <?php echo $row->experience; ?></li>
+                <li class="mb-2"><strong class="text-black">Job Location: </strong><?php echo $row->job_region; ?></li>
+                <li class="mb-2"><strong class="text-black">Salary: </strong> <?php echo $row->salary; ?></li>
+                <li class="mb-2"><strong class="text-black">Gender: </strong> <?php echo $row->gender; ?></li>
                 <li class="mb-2"><strong class="text-black">Application Deadline:</strong><?php echo date('M',strtotime($row->application_deadline)).','.date('d',strtotime($row->application_deadline)).' '.date('Y',strtotime($row->application_deadline)); ?></li>
+                  <li class="mb-2"><strong class="text-black">Job Categories: </strong><?php echo ucfirst($row->job_category); ?></li>
               </ul>
 
             </div>
@@ -228,6 +238,18 @@
                 <a href="https://linkedin.com/sharing/share-offsite/?url=<?php echo APPURL ?>/jobs/job-single.php?id=<?php echo $row->id; ?>" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
               </div>
             </div>
+
+              <div class="bg-light p-3 border rounded mb-4 mt-4">
+                  <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Categories</h3>
+                  <ul class="list-unstyled pl-3 mb-0">
+                      <?php
+                      foreach($all_categories as $category):
+                      ?>
+                          <a target="_blank" style="text-decoration: none;" href="<?php echo APPURL; ?>/categories/show-jobs.php?name=<?php echo $category->name; ?>"> <li class="mb-2"><strong class="text-black"><?php echo ucfirst($category->name); ?></strong></li></a>
+                    <?php endforeach; ?>
+                  </ul>
+
+              </div>
 
           </div>
         </div>

@@ -12,8 +12,9 @@ define("APPURL", "http://localhost/Job Portal");
                     <li><a href="<?php echo APPURL; ?>" class="nav-link active">Home</a></li>
                     <li><a href="<?php echo APPURL; ?>/about.php">About</a></li>
 
-
                     <li><a href="<?php echo APPURL; ?>/contact.php">Contact</a></li>
+                    <li><a href="<?php echo APPURL; ?>/generals/workers.php">Workers</a></li>
+                    <li><a href="<?php echo APPURL; ?>/generals/companies.php">Companies</a></li>
                     <?php
                     if(isset($_SESSION['username'])):
                         if(isset($_SESSION['type']) AND $_SESSION['type'] == 'Company') :?>
@@ -31,6 +32,13 @@ define("APPURL", "http://localhost/Job Portal");
                                 ?>
                                 <a class="dropdown-item" href="<?php echo APPURL;?>/users/saved_jobs.php?id=<?php echo $_SESSION['id'];?>">Saved Jobs</a>
                                 <?php endif; ?>
+
+                                <?php
+                                if(isset($_SESSION['type']) AND $_SESSION['type'] == 'Company'):
+                                    ?>
+                                    <a class="dropdown-item" href="<?php echo APPURL;?>/users/show-applicants.php?id=<?php echo $_SESSION['id'];?>">Show Applicants</a>
+                                <?php endif; ?>
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo APPURL; ?>/auth/logout.php">Logout</a>
                             </div>

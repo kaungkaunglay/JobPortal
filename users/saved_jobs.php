@@ -2,14 +2,23 @@
 <?php  require "../config/config.php"; ?>
 
 <?php
+//if the worker is not the worker type of user
+if(!isset($_SESSION['type']) AND $_SESSION['type'] !== 'Worker'){
+    header("Location: ".APPURL);
+}
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
+    //Other user id is not allowed
+    if($_SESSION['id'] !== $id)
+    {
+        header("Location: ". APPURL);
+    }
     $select = $conn->query("SELECT * FROM users WHERE id='$id'");
     $select->execute();
     $profile = $select->fetchAll(PDO::FETCH_OBJ);
 
     // Grapping saved_jobs
-    $saved_jobs = $conn->query("SELECT * FROM jobs INNER JOIN saved_jobs ON jobs.id = saved_jobs.job_id WHERE worker_id = 2");
+    $saved_jobs = $conn->query("SELECT * FROM jobs INNER JOIN saved_jobs ON jobs.id = saved_jobs.job_id WHERE worker_id = 3");
     $saved_jobs->execute();
     $jobs = $saved_jobs->fetchAll(PDO::FETCH_OBJ);
 
@@ -36,7 +45,6 @@ if(isset($_GET['id'])) {
                     <h2 class="section-title mb-2">Saved Jobs</h2>
                 </div>
             </div>
-        <?php endif; ?>
 
         <ul class="job-listings mb-5">
             <?php
@@ -45,13 +53,13 @@ if(isset($_GET['id'])) {
                 <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
                     <a href="<?php echo APPURL; ?>/jobs/job-single.php?id=<?php echo $job->id; ?>"></a>
                     <div class="job-listing-logo">
-                        <img src="user-images/<?php echo $_SESSION['image']; ?>" alt="Free Website Template by Free-Template.co" class="img-fluid">
+                        <img src="user-images/<?php echo $job->company_image; ?>" alt="Free Website Template by Free-Template.co" class="img-fluid">
                     </div>
 
                     <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
                         <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
                             <h2><?php echo $job->job_title; ?></h2>
-                            <strong><?php echo $_SESSION['username']; ?></strong>
+                            <strong><?php echo $job->company_name; ?></strong>
                         </div>
                         <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
                             <span class="icon-room"></span> <?php echo $job->job_region; ?>
