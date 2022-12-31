@@ -46,7 +46,7 @@ require_once "../includes/header.php";
         echo "<script>window.location='$app_url'</script>";
     }
     if(isset($_POST['submit'])){
-        if(empty($_POST['username']) OR empty($_POST['email'] OR empty($_POST['re-password']))){
+        if(empty($_POST['username']) OR empty($_POST['email']) OR empty($_POST['re-password'])){
             echo "<script>alert('some inputs are empty')</script>";
         }else {
             $username = trim(htmlentities($_POST['username']));

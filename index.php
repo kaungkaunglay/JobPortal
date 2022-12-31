@@ -1,10 +1,13 @@
 <?php
 require  "includes/header.php" ;
 require  "config/config.php";
-
     $select = $conn->query("SELECT * FROM jobs WHERE status = 1 ORDER BY created_at DESC LIMIT 5");
     $select->execute();
     $jobs = $select->fetchAll(PDO::FETCH_OBJ);
+
+    $search = $conn->query("SELECT DISTINCT COUNT(keyword) AS count, keyword FROM searches GROUP BY keyword ORDER BY count DESC LIMIT 4");
+    $search->execute();
+    $all_searches = $search->fetchAll(PDO::FETCH_OBJ);
 ?>
 
     <!-- HOME -->
@@ -48,10 +51,12 @@ require  "config/config.php";
               <div class="row">
                 <div class="col-md-12 popular-keywords">
                   <h3>Trending Keywords:</h3>
+                    <?php
+                        foreach($all_searches as $search) :
+                    ?>
                   <ul class="keywords list-unstyled m-0 p-0">
-                    <li><a href="#" class="">UI Designer</a></li>
-                    <li><a href="#" class="">Python</a></li>
-                    <li><a href="#" class="">Developer</a></li>
+                    <li><a href="#" class=""><?php echo $search->keyword; ?></a></li>
+                   <?php endforeach; ?>
                   </ul>
                 </div>
               </div>

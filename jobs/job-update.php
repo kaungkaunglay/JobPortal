@@ -18,6 +18,8 @@ if(isset($_GET['id'])){
     if(isset($_SESSION['id']) AND $single_job->company_id !== $_SESSION['id']){
         header("Location: ".APPURL);
     }
+}else{
+    header("Location: ".APPURL."/404.php");
 }
 
 if(isset($_POST['submit'])){

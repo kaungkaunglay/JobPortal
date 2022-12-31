@@ -21,10 +21,18 @@ require  "config/config.php";
      //   echo "submitted";
         if(empty($_POST['job-title']) OR empty($_POST['job-region']) OR empty($_POST['job-type'])){
             echo "<script>alert('One input or more are empty ')</script>";
+            header("Location: ".APPURL);
         }else{
             $job_title = $_POST['job-title'];
             $job_region = $_POST['job-region'];
             $job_type = $_POST['job-type'];
+
+            //doing trending keywords
+            $insert = $conn->prepare("INSERT INTO searches (keyword) VALUES (:keyword)");
+            $insert->execute([
+                    ':keyword' => $job_title
+            ]);
+
             $search = $conn->query("SELECT * FROM jobs WHERE job_title LIKE '%$job_title%' AND job_region LIKE '%$job_region%' AND job_type LIKE '%$job_type%' AND status = 1");
 
             $search->execute();

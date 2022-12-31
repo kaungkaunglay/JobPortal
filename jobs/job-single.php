@@ -68,6 +68,8 @@
         $categories = $conn->query("SELECT * FROM categories");
         $categories->execute();
         $all_categories = $categories->fetchAll(PDO::FETCH_OBJ) ;
+    }else{
+        header("Location: ".APPURL."/404.php");
     }
 ?>
     <!-- HOME -->
