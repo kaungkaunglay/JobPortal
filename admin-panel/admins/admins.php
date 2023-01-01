@@ -4,6 +4,11 @@
 $select = $conn->query("SELECT * FROM admins");
 $select->execute();
 $admins = $select->fetchAll(PDO::FETCH_OBJ) ;
+if(!isset($_SESSION['adminname']))
+{
+    $app_url = ADMINURL;
+    echo "<script>window.location='$app_url'</script>";
+}
 ?>
     <div class="row">
         <div class="col">

@@ -42,7 +42,7 @@ define("ADMINURL", "http://localhost/Job%20Portal/admin-panel");
                         <a class="nav-link" href="<?php echo ADMINURL ?>/categories-admins/show-categories.php" style="margin-left: 20px;">Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="jobs-admins/show-jobs.html" style="margin-left: 20px;">Jobs</a>
+                        <a class="nav-link" href="<?php echo ADMINURL ?>/jobs-admins/show-jobs.php" style="margin-left: 20px;">Jobs</a>
                     </li>
 
                 </ul>

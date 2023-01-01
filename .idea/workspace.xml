@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f44744c-760a-4cd1-8f84-b53f96efc2e0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jobs/job-delete.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jobs/job-update.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jobs/job-single.php" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/job-single.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/jobs-admins/delete-jobs.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/jobs-admins/status-jobs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/admins/admins.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/admins/admins.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/categories-admins/delete-category.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/categories-admins/delete-category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/categories-admins/show-categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/categories-admins/show-categories.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/categories-admins/update-category.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/categories-admins/update-category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/jobs-admins/show-jobs.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/jobs-admins/show-jobs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/layouts/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/layouts/header.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,20 +31,23 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2JZXDOaLOv5Hurc0swoIWnOuVOO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/Job portal",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -50,6 +57,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672286459119</updated>
       <workItem from="1672286460760" duration="3843000" />
+      <workItem from="1672539067311" duration="4264000" />
     </task>
     <servers />
   </component>
