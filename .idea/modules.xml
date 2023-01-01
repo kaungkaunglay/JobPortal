@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Emailable/.idea/Emailable.iml" filepath="$PROJECT_DIR$/../Emailable/.idea/Emailable.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Job portal.iml" filepath="$PROJECT_DIR$/.idea/Job portal.iml" />
     </modules>
   </component>
