@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Emailable/.idea/Emailable.iml" filepath="$PROJECT_DIR$/../Emailable/.idea/Emailable.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Job portal.iml" filepath="$PROJECT_DIR$/.idea/Job portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Reader/.idea/Reader.iml" filepath="$PROJECT_DIR$/../Reader/.idea/Reader.iml" />
     </modules>
   </component>
 </project>
