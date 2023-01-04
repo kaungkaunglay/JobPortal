@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f44744c-760a-4cd1-8f84-b53f96efc2e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Job portal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Job portal.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="1f44744c-760a-4cd1-8f84-b53f96efc2e0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +11,7 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -29,6 +25,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2JZXDOaLOv5Hurc0swoIWnOuVOO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -38,7 +35,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/Translation Files",
+    "last_opened_file_path": "C:/Fav/Favicon+Grabber+-HTML-CSS_NarendraDwivedi",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -65,6 +62,7 @@
       <workItem from="1672570111395" duration="413000" />
       <workItem from="1672586688997" duration="5901000" />
       <workItem from="1672664008974" duration="4217000" />
+      <workItem from="1672745289339" duration="1366000" />
     </task>
     <servers />
   </component>
