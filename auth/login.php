@@ -21,13 +21,13 @@ if(isset($_SESSION['username']))
         // check for password
         $email =  trim(htmlentities($_POST['email']));
         $password = trim(htmlentities($_POST['password']));
-
+        $hashed_password = hash("sha256",$password);
         $login = $conn->query("SELECT * FROM users WHERE email= '$email'");
         $login->execute();
 
         $select = $login->fetch(PDO::FETCH_ASSOC);
         if($login->rowCount() > 0){
-            if(password_verify($password, $select['mypassword'])){
+            if($hashed_password == $select['mypassword']){
                 $_SESSION['username'] = $select['username'];
                 $_SESSION['id'] = $select['id'];
                 $_SESSION['type'] = $select['type'];

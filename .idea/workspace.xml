@@ -11,7 +11,7 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -35,12 +35,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Fav/Favicon+Grabber+-HTML-CSS_NarendraDwivedi",
+    "last_opened_file_path": "C:/xampp/htdocs/Job portal/auth/password_reset",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Job portal\auth\password_reset" />
+      <recent name="C:\xampp\htdocs\Job portal\auth\password_reset\SentEmail" />
       <recent name="C:\xampp\htdocs\Translation Files" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -63,6 +65,7 @@
       <workItem from="1672586688997" duration="5901000" />
       <workItem from="1672664008974" duration="4217000" />
       <workItem from="1672745289339" duration="1366000" />
+      <workItem from="1672990667063" duration="8934000" />
     </task>
     <servers />
   </component>
