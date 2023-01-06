@@ -79,7 +79,12 @@ if(isset($_SESSION['username']))
                                 <input type="password" name="password" id="fname" class="form-control" placeholder="Password">
                             </div>
                         </div>
-
+                        <div class="row form-group mb-4">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                <label class="text-black"><a style="text-decoration: none;color: black;" href="<?php echo APPURL ?>/auth/password_reset">Forgot Password</a></label>
+                                <label style="float: right;" class="text-black"><a style="text-decoration: none;" href="<?php echo APPURL ?>/auth/register.php">Don't have account?</a></label>
+                            </div>
+                        </div>
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <input name="submit" type="submit" value="Log In" class="btn px-4 btn-primary text-white">

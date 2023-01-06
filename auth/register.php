@@ -138,6 +138,12 @@ require_once "../includes/header.php";
                                 <input name="re-password" type="password" id="fname" class="form-control" placeholder="Re-type Password">
                             </div>
                         </div>
+                        <div class="row form-group mb-4">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                <label class="text-black"><a style="text-decoration: none;color: black;" href="<?php echo APPURL ?>/auth/password_reset">Forgot Password</a></label>
+                                <label style="float: right" class="text-black;text-decoration: none;"><a style="text-decoration: none;" href="<?php echo APPURL ?>/auth/login.php">Already have an account?</a></label>
+                            </div>
+                        </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">

@@ -36,6 +36,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/xampp/htdocs/Job portal/auth/password_reset",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -65,7 +66,7 @@
       <workItem from="1672586688997" duration="5901000" />
       <workItem from="1672664008974" duration="4217000" />
       <workItem from="1672745289339" duration="1366000" />
-      <workItem from="1672990667063" duration="8934000" />
+      <workItem from="1672990667063" duration="9973000" />
     </task>
     <servers />
   </component>
