@@ -90,13 +90,13 @@ require_once "../../includes/header.php";
                         <div class="row form-group mb-4">
                             <div class="col-md-12 mb-3 mb-md-0">
                                 <label class="text-black" for="fname">Enter Temporary Password sent to Your Email: <?php echo $_SESSION['reset_email']; ?> </label>
-                                <input type="text" name="password" id="fname" class="form-control" placeholder="Temporary Password">
+                                <input type="password" name="password" id="fname" class="form-control" placeholder="Temporary Password">
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <input name="submit" type="submit" value="Log In" class="btn px-4 btn-primary text-white">
+                                <input name="submit" type="submit" value="Check" class="btn px-4 btn-primary text-white">
                             </div>
                         </div>
 

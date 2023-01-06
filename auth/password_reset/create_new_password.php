@@ -60,14 +60,14 @@ if(!isset($_SESSION['reset_email'])){
                         <div class="row form-group mb-4">
                             <div class="col-md-12 mb-3 mb-md-0">
                                 <label class="text-black" for="fname">Enter New Password </label>
-                                <input type="text" name="password" id="fname" class="form-control" placeholder="Password*********">
+                                <input type="password" name="password" id="fname" class="form-control" placeholder="Password*********">
                             </div>
                         </div>
 
                         <div class="row form-group mb-4">
                             <div class="col-md-12 mb-3 mb-md-0">
                                 <label class="text-black" for="fname">Retype New Password </label>
-                                <input type="text" name="re_type_password" id="fname" class="form-control" placeholder="New Password*********">
+                                <input type="password" name="re_type_password" id="fname" class="form-control" placeholder="New Password*********">
                             </div>
                         </div>
 

@@ -53,7 +53,7 @@ require_once "../../includes/header.php";
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <input name="submit" type="submit" value="Log In" class="btn px-4 btn-primary text-white">
+                                <input name="submit" type="submit" value="Check" class="btn px-4 btn-primary text-white">
                             </div>
                         </div>
 
