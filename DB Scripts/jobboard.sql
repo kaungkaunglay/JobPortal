@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2022 at 03:32 PM
+-- Generation Time: Jan 06, 2023 at 05:22 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -20,8 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `jobboard`
 --
-CREATE DATABASE IF NOT EXISTS `jobboard` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `jobboard`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(3) NOT NULL,
+  `adminname` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `mypassword` varchar(200) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `adminname`, `email`, `mypassword`, `created_at`) VALUES
+(1, 'Kaung Kaung', 'admin@gmail.com', '$2y$10$DXDzjqfu3.bR0oIbQoKtg.WdTWrkAwePUico6Z75GMX1S1Kc2GODq', '2022-12-31 11:02:27'),
+(2, 'UwU', 'uwu@gmail.com', '$2y$10$nLngJnL.RAm5rEkCd4fQl.Ez4r06wR9o/9XtxaQQ610NwyyqhjHju', '2022-12-31 16:03:18');
 
 -- --------------------------------------------------------
 
@@ -40,7 +60,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `created_at`) VALUES
-(1, 'design', '2022-12-28 12:21:01'),
+(1, 'Design', '2022-12-28 12:21:01'),
 (2, 'development', '2022-12-28 12:21:01');
 
 -- --------------------------------------------------------
@@ -77,10 +97,92 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` (`id`, `job_title`, `job_region`, `job_type`, `vacancy`, `job_category`, `experience`, `salary`, `gender`, `application_deadline`, `job_description`, `responsibilities`, `education_experience`, `other_benifits`, `company_email`, `company_name`, `company_id`, `company_image`, `status`, `created_at`) VALUES
-(1, 'Developer', 'Anywhere', 'Part Time', 12, 'design', '3-6 years', '$50k - $70k', 'Male', '20-12-2023', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'kk8225248@gmail.com', 'Aung Khant Zin', 3, 'tset1.png', 0, '2022-12-26 15:49:03'),
-(2, 'Developer', 'Anywhere', 'Part Time', 12, 'design', '1-3 years', '$50k - $70k', 'Male', '20-12-2023', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'johmoe@gmail.com', 'John Moe', 7, '04yO1RQQQj7e5kEow66iE52-31.webp', 1, '2022-12-26 16:13:56'),
+(1, 'Developer', 'Where', 'Part Time', 12, 'design', '3-6 years', '$50k - $70k', 'Male', '20-12-2023', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'kk8225248@gmail.com', 'Aung Khant Zin', 3, 'tset1.png', 1, '2022-12-26 15:49:03'),
+(2, 'Developer', 'Anywhere', 'Part Time', 12, 'design', '1-3 years', '$70k - $100k', 'Male', '20-12-2023', 'Kaung Kaung', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'johmoe@gmail.com', 'John Moe', 7, '04yO1RQQQj7e5kEow66iE52-31.webp', 0, '2022-12-26 16:13:56'),
 (3, 'Graphic Designer', 'Anywhere', 'Part Time', 12, 'design', '1-3 years', '$50k - $70k', 'Female', '20-12-2023', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolorum eos fugiat, iusto libero odio possimus quo quod rem suscipit tempore? At explicabo ipsa labore, modi nulla ratione similique?', 'johmoe@gmail.com', 'John Moe', 7, '04yO1RQQQj7e5kEow66iE52-31.webp', 0, '2022-12-26 16:14:25'),
 (4, 'game developer', 'Anywhere', 'Part Time', 12, 'design', '1-3 years', '$50k - $70k', 'Male', '20-12-2023', 'sadfadsf', 'sdfadsfsd', 'fsdfasf', 'adfadsf', 'johmoe@gmail.com', 'John Moe', 7, '04yO1RQQQj7e5kEow66iE52-31.webp', 0, '2022-12-28 12:33:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_applications`
+--
+
+CREATE TABLE `job_applications` (
+  `id` int(3) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `cv` varchar(200) NOT NULL,
+  `worker_id` int(3) NOT NULL,
+  `job_id` int(3) NOT NULL,
+  `job_title` varchar(200) NOT NULL,
+  `company_id` int(3) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `job_applications`
+--
+
+INSERT INTO `job_applications` (`id`, `username`, `email`, `cv`, `worker_id`, `job_id`, `job_title`, `company_id`, `created_at`) VALUES
+(4, 'Aung Khant Zin', 'kk8225248@gmail.com', 'received_584680439652971_1655127036.gif', 3, 2, 'Developer', 7, '2022-12-31 02:58:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_rest`
+--
+
+CREATE TABLE `password_rest` (
+  `id` int(3) NOT NULL,
+  `temp_password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `password_rest`
+--
+
+INSERT INTO `password_rest` (`id`, `temp_password`, `email`, `created_at`) VALUES
+(28, '435b817df0a988a20b648c108e017e8ab2ff443881eadab20236d4af1c06e5d1', 'aungkhantzin881@gmail.com', '2023-01-06 10:46:51'),
+(29, '4e682612a681046b8097571a74554169ffcfd5cce56933ac765ef8171ff1a9c0', 'aungkhantzin881@gmail.com', '2023-01-06 10:47:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saved_jobs`
+--
+
+CREATE TABLE `saved_jobs` (
+  `id` int(3) NOT NULL,
+  `job_id` int(3) NOT NULL,
+  `worker_id` int(3) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `searches`
+--
+
+CREATE TABLE `searches` (
+  `id` int(3) NOT NULL,
+  `keyword` varchar(200) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `searches`
+--
+
+INSERT INTO `searches` (`id`, `keyword`, `created_at`) VALUES
+(1, 'designer', '2022-12-31 10:08:04'),
+(2, 'designer', '2022-12-31 10:21:42'),
+(3, 'Developer', '2022-12-31 10:21:48'),
+(4, 'Developer', '2022-12-31 10:21:55'),
+(5, 'software', '2022-12-31 10:22:04');
 
 -- --------------------------------------------------------
 
@@ -109,11 +211,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `type`, `mypassword`, `img`, `cv`, `title`, `bio`, `facebook`, `twitter`, `linkedin`, `created_at`) VALUES
-(1, 'kk8225248@gmail.com', 'aungkhantzin881@gmail.com', '', '$2y$10$NMMxzDN3xvJ2A5ZSHwrIKedipTU4xnTgaiLBtuYdGKD5ZqV3grDMi', '11482733491610445586_1.webp', 'NULL', 'NULL', '', '', '', '', '2022-12-23 16:19:10'),
-(2, 'kk8225248@gmail.com', 'aungkhantzin881@gmail.com', '', '$2y$10$UEcUMe/8qfYQs60BT7S0puYZK6Xvb/ab9MyiNE1OQXt1Up1D22H.q', 'web-coding.png', NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-23 16:21:37'),
-(3, 'Aung Khant Zin', 'kk8225248@gmail.com', 'Worker', '$2y$10$ZyGIPPaG5Sr178uUOx9/I.yeKWyzqGpVk9Vv4y4d2sgPN4Hb/xSzu', 'tset1.png', '', 'pull stack developer', 'I\'m software engineer with over two year experiences.', 'https://facebook.com/fkadskf', 'https://twitter.com/loveisgood', 'https://linkedin.com/dsjfsd', '2022-12-23 16:21:58'),
-(4, 'AungKhantZin', 'aungkhantzin881@gmail.com', 'Worker', '$2y$10$qTTUdItK/Fk/2Btn0ANBb.xywrEDk79U7..bs3PJlfMJMnCaIudOW', '', NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-24 05:40:07'),
-(5, 'kk8225248@gmail.com', 'aungkhantzin881@gmail.com', 'Company', '$2y$10$LcdGKVVby6OX.k2dYS/1eOCiJInjvtdCyYf2YLRLpI12hJBh.dPki', 'web-coding.png', NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-24 05:45:03'),
+(1, 'kk8225248@gmail.com', 'aungkhantzin881@gmail.com', '', '1a0562db1dd5e68ce98d7d7c00268b176264014f60d58f51fcf4386de42ebb8e', '11482733491610445586_1.webp', 'NULL', 'NULL', '', '', '', '', '2022-12-23 16:19:10'),
+(2, 'kk8225248@gmail.com', 'aungkhantzin881@gmail.com', '', '1a0562db1dd5e68ce98d7d7c00268b176264014f60d58f51fcf4386de42ebb8e', 'web-coding.png', NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-23 16:21:37'),
+(3, 'Aung Khant Zin', 'kk8225248@gmail.com', 'Worker', '$2y$10$ZyGIPPaG5Sr178uUOx9/I.yeKWyzqGpVk9Vv4y4d2sgPN4Hb/xSzu', '11482733491610445586_1.webp', 'received_584680439652971_1655127036.gif', 'pull stack developer', 'I\'m software engineer with over two year experiences.', 'https://facebook.com/fkadskf', 'https://twitter.com/loveisgood', 'https://linkedin.com/dsjfsd', '2022-12-23 16:21:58'),
+(4, 'AungKhantZin', 'aungkhantzin881@gmail.com', 'Worker', '1a0562db1dd5e68ce98d7d7c00268b176264014f60d58f51fcf4386de42ebb8e', '', NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-24 05:40:07'),
 (6, 'Aung Khant Zin', 'kk8225248@gmail.com', 'Worker', '$2y$10$DXDzjqfu3.bR0oIbQoKtg.WdTWrkAwePUico6Z75GMX1S1Kc2GODq', 'web-coding.png', NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-24 05:46:14'),
 (7, 'John Moe', 'johmoe@gmail.com', 'Company', '$2y$10$o8Xs4/I.8KKpzwuvp79EIeIs6OqbDEhxVSZCgV.M4pyS6S1e15pwm', '04yO1RQQQj7e5kEow66iE52-31.webp', 'NULL', 'NULL', 'Company Owner', '', '', '', '2022-12-25 15:47:59'),
 (8, 'Guest', 'guest@gmail.com', 'Worker', '$2y$10$xjmgdxfcAzY9f4VVsTUqjeUBU/6d7BO9Igkucmjnd0Jcz898L/Fem', '14450421.jpg', 'viber_image_2021-12-25_13-51-42-442.jpg', 'just a title', 'I\'m fool', '', '', '', '2022-12-25 16:03:38'),
@@ -124,6 +225,12 @@ INSERT INTO `users` (`id`, `username`, `email`, `type`, `mypassword`, `img`, `cv
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categories`
@@ -138,6 +245,30 @@ ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `job_applications`
+--
+ALTER TABLE `job_applications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_rest`
+--
+ALTER TABLE `password_rest`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `saved_jobs`
+--
+ALTER TABLE `saved_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `searches`
+--
+ALTER TABLE `searches`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -148,16 +279,46 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `job_applications`
+--
+ALTER TABLE `job_applications`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `password_rest`
+--
+ALTER TABLE `password_rest`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `saved_jobs`
+--
+ALTER TABLE `saved_jobs`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `searches`
+--
+ALTER TABLE `searches`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
